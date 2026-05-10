@@ -23,12 +23,12 @@ jobs:
 
       - name: Rename artifactId in pom.xml
         run: |
-          sed -i "s|<artifactId>[^<]*</artifactId>|<artifactId>${{ github.event.repository.name }}</artifactId>|" "${GITHUB_REPOSITORY}/pom.xml"
+          sed -i "s|<artifactId>[^<]*</artifactId>|<artifactId>${{ github.event.repository.name }}</artifactId>|" "$GITHUB_WORKSPACE/pom.xml"
 
       - name: Update README.md
         run: |
-          touch "${GITHUB_REPOSITORY}/README.md"
-          echo -e "# ${{ github.event.repository.name }}\n${{ github.event.repository.description }}" > "${GITHUB_REPOSITORY}/README.md"
+          touch "$GITHUB_WORKSPACE/README.md"
+          echo -e "# ${{ github.event.repository.name }}\n${{ github.event.repository.description }}" > "$GITHUB_WORKSPACE/README.md"
 
       - name: Remove .github directory
         run: |
